@@ -22,23 +22,25 @@ class Board extends React.Component {
   
   render() {
     return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
+      <table id="board">
+        <tbody>
+          <tr>
+            <td>{this.renderSquare(0)}</td>
+            <td>{this.renderSquare(1)}</td>
+            <td>{this.renderSquare(2)}</td>
+          </tr>
+          <tr>
+            <td>{this.renderSquare(3)}</td>
+            <td>{this.renderSquare(4)}</td>
+            <td>{this.renderSquare(5)}</td>
+          </tr>
+          <tr>
+            <td>{this.renderSquare(6)}</td>
+            <td>{this.renderSquare(7)}</td>
+            <td>{this.renderSquare(8)}</td>
+          </tr>
+        </tbody>
+      </table>
     );
   }
 }
@@ -87,23 +89,36 @@ class Game extends React.Component {
       const desc = move ?
       'Go to move #' + move :
       'Restart game';
+      if (move === 0) {
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className="btn btn-danger btn-flat" onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
-      );
+      ); 
+      } else { 
+      return (
+        <li key={move}>
+          <button className="btn btn-primary btn-flat" onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      ) 
+    }
     });
 
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
-    } else {
+     // const winningSquares = current.squares; // TODO highlight winning squares
+    } else if (current.squares.includes(null)) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+     } else {
+       status = 'DRAW!';
+     }
+    
 
     return (
       <div className="game">
         <div className="game-board">
+          <div className="next">{status}</div>
           <Board 
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
@@ -111,7 +126,6 @@ class Game extends React.Component {
 
         </div>
         <div className="game-info">
-          <div>{status}</div>
           <ul>{moves}</ul>
         </div>
       </div>
