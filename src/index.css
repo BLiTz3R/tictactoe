@@ -56,44 +56,6 @@ ul {
   margin-bottom: 10px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td {
-  width: 33.333%;
-  border: 6px solid #222;
-}
-
-td::after {
-  content: "";
-  display: block;
-  margin-top: 100%;
-}
-
-td {
-  border: 6px solid #222;
-}
-
-td:first-of-type {
-  border-left-color: transparent;
-  border-top-color: transparent;
-}
-
-td:nth-of-type(2) {
-  border-top-color: transparent;
-}
-
-td:nth-of-type(3) {
-  border-right-color: transparent;
-  border-top-color: transparent;
-}
-
-tr:nth-of-type(3) td {
-  border-bottom-color: transparent;
-}
-
 .square {
   background: #fff;
   float: left;
@@ -106,14 +68,51 @@ tr:nth-of-type(3) td {
   padding: 0;
   text-align: center;
   width: 100px;
+  border: 5px solid #000;
+}
+
+.square.highlight {
+  background: #ff0000;
+}
+
+.board-row:nth-of-type(1) .square:nth-child(1) {
+  border-top: transparent;
+  border-left: transparent;
+}
+
+.board-row:nth-of-type(1) .square:nth-child(2) {
+  border-top: transparent;
+}
+
+.board-row:nth-of-type(1) .square:nth-child(3) {
+  border-top: transparent;
+  border-right: transparent;
+}
+
+.board-row:nth-of-type(2) .square:nth-child(1) {
+  border-left: transparent;
+}
+
+.board-row:nth-of-type(2) .square:nth-child(3) {
+  border-right: transparent;
+}
+
+.board-row:nth-of-type(3) .square:nth-child(1) {
+  border-left: transparent;
+  border-bottom: transparent;
+}
+
+.board-row:nth-of-type(3) .square:nth-child(2) {
+  border-bottom: transparent;
+}
+
+.board-row:nth-of-type(3) .square:nth-child(3) {
+  border-right: transparent;
+  border-bottom: transparent;
 }
 
 .square:focus {
   outline: none;
-}
-
-#board button {
-  border: none;
 }
 
 .next {
@@ -126,13 +125,9 @@ tr:nth-of-type(3) td {
   background: linear-gradient(to bottom, #FF8A65 0%, #FF7043 100%);
 }
 
-
-
 .kbd-navigation .square:focus {
   background: #ddd;
 }
-
-
 
 .btn {
   display: inline-block;
@@ -313,8 +308,18 @@ fieldset[disabled] .btn-danger.btn-flat {
   border-color: #FFAB91;
 }
 
-.game-info li:last-child:not(:first-child) {
-  /* Scale up last move every time, but not the first one (first is always "restart game") */
+.game-info li:last-child:not(:first-child) button {
+  /* Bold and scale up last move button, but not the first one (first is always "restart game") */
+  font-weight: bold;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+@media only screen and (max-width: 336px) {
+  .square {
+    width: 60px;
+    height: 60px;
+    font-size: 36px;
+    line-height: 60%;
+  }
 }
