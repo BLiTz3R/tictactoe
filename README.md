@@ -1,3 +1,12 @@
+## TicTacToe Game
+
+The popular TicTacToe game, made with ReactJS. It is based on the offical ReactJS tutorial. I have edited/perfected it myself and added some nice new features, offered in the end as extra challenges in the tutorial.
+
+Namely, I have improved the UI a bit. It is a much more pleasant user experience now. I have also made the last move show as bold/larger. Game shows "DRAW!" when there is no winner, and it highlights the winning squares when there is a winner.
+
+Enjoy!
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
